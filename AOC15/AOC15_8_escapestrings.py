@@ -28,9 +28,9 @@ def pp(subject, name): #prints anything with a name as string
         print(f"{name}: {subject}")
 
 print("\n----------------------------------")   # reading file
-file = "/Users/plath/Library/Mobile Documents/com~apple~CloudDocs/Code/AOC15/escapestrings.txt"
+file = "/Users/plath/Library/Mobile Documents/com~apple~CloudDocs/Code/AOC/AOC15/escapestrings.txt"
 if debug:
-    file = "/Users/plath/Library/Mobile Documents/com~apple~CloudDocs/Code/AOC15/escapestringstest.txt"
+    file = "/Users/plath/Library/Mobile Documents/com~apple~CloudDocs/Code/AOC/AOC15/escapestringstest.txt"
 
 with open(file) as f:
     data = f.read()

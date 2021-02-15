@@ -20,7 +20,7 @@ def pp(subject, name): #prints anything with a name as string
         print(f"{name}: {subject}")
 
 print("\n----------------------------------")   # reading file
-file = "/Users/plath/Library/Mobile Documents/com~apple~CloudDocs/Code/AOC20/aoc20_1_data.txt"
+file = "/Users/plath/Library/Mobile Documents/com~apple~CloudDocs/Code/AOC/AOC20/aoc20_1_data.txt"
 
 
 
