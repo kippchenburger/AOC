@@ -31,6 +31,7 @@ data = """16
 
 # part 2
 # 
+from more_itertools import consecutive_groups
 
 debug = False
 printit = True
@@ -41,7 +42,7 @@ def pp(subject, name = "", override = False): #prints anything with a name as st
 
 print("\n----------------------------------")   # reading file
 
-file = "AOC20/aoc20_10_data2.txt"
+file = "AOC20/aoc20_10_data.txt"
 if not debug:
     with open(file) as f:
         data = f.read()
@@ -84,46 +85,131 @@ pp(len(ones)*len(threes), "product of numbers of 1 and 3 jolt differences", True
 skippables = []
 tripleones, doubleones, onetwos, twoones = 0,0,0,0
 permutations = 1
-index = 1
-while index < len(data[1:-1]):
-#for index, n in enumerate(data[1:-1], start=1):
-    n = data[i]
+
+for index, n in enumerate(data[1:-1], start=1):
     if n in threes:
         pass
-        #skippables += 0
     elif n in twos:
         if data[index+1] in ones:
             skippables.append(n)
             twoones+=1
-            permutations *= 2
     elif n in ones:
         if data[index+1] in ones:
             doubleones+=1
             skippables.append(n)
-            permutations *= 2
-            if data[index+2] in ones:
-                tripleones+=1
-                skippables.append(n)
-            #    permutations *= 2
         elif data[index+1] in twos:
                 skippables.append(n)
                 twoones+=1
-                permutations *= 2
 
 #skippables = list(dict.fromkeys(skippables))
 #permutations = 2 ** len(skippables)
 pp(doubleones, "double ones")
 pp(tripleones, "triple ones")
-pp(onetwos, "one twos")
-pp(twoones, "two ones")
 pp(skippables, "skippables")
 pp(len(skippables), "number of skippables")
+
+
+skippable_sections = []
+sections_index = 0
+
+for group in consecutive_groups(skippables):
+    skippable_sections.append(list(group))
+
+for section in skippable_sections:
+    x = len(section)
+    # y = (2**(x-1)-x+1)
+    if x == 5:       # --------hardcoded solutions :DDDD
+        y = 19
+    if x == 4:
+        y = 14
+    if x == 3:
+        y = 7
+    if x == 2:
+        y = 4
+    if x == 1:
+        y = 2
+        #permutations += y
+    permutations *= y
+
+pp(skippable_sections, "array of ones sections")
 pp(permutations, "permutations")
+'''
+123
+1
+2
+3
+12
+13
+23
+
+1234
+12
+1 3
+1  4
+123
+12 4
+1 34
+ 2
+ 23
+ 2 4
+ 234
+  3
+  34
+   4
+
+12345
+1  45
+1 3 5
+12  5
+1  4
+1 34
+12 4
+1 3
+123
+ 23
+ 234
+ 2345
+ 2  5
+ 2 45
+ 23 5
+  3
+  34
+  345
+  3 5
+
+'''
+
+
+        
+            
+
+
 
 helper = 19208
-helper = 2**2
-pp(helper, "helper")
+helper = 2**(5-1)-5
+helper = 7*7*4*2*7*7
 
+pp(helper, "helper")
+'''
+0123
+023
+013
+03
+
+012345 
+02345
+01345
+01245
+01235
+0145
+0245
+0345
+0125
+0135
+035
+025
+
+'''
 # (0), 1, 4, 5, 6, 7, 10, 11, 12, 15, 16, 19, (22)
 # (0), 1, 4, 5, 6, 7, 10, 12, 15, 16, 19, (22)
 # (0), 1, 4, 5, 7, 10, 11, 12, 15, 16, 19, (22)
