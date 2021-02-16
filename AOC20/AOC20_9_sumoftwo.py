@@ -52,7 +52,7 @@ def pp(subject, name = "", override = False): #prints anything with a name as st
 
 print("\n----------------------------------")   # reading file
 
-file = "AOC20/aoc20_9_data.txt"
+file = "AOC20/data_aoc20_9.txt"
 if not debug:
     with open(file) as f:
         data = f.read()
@@ -99,7 +99,7 @@ for index, n in enumerate(data):
         i += 1
     if stoplooking:
         break
-    
+
 settocheck = sorted(settocheck)
 encryption_weakness = settocheck[0] + settocheck[-1]
 pp(settocheck, "contiguous numbers adding up to weakness")
