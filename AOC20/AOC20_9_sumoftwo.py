@@ -33,9 +33,18 @@ data = """35
 # in the list (after the preamble) which is not the sum of two of the 25 numbers before it. 
 # What is the first number that does not have this property?
 
+# part 2
+# you must find a contiguous set of at least two numbers in your list which sum to 
+# the invalid number from step 1
+# In this list, adding up all of the numbers from 15 through 40 produces the invalid 
+# number from step 1, 127. (Of course, the contiguous set of numbers in your actual list might 
+# be much longer.)
 
-debug = True
-printit = False
+# To find the encryption weakness, add together the smallest and largest number in this 
+# contiguous range; in this example, these are 15 and 47, producing 62.
+
+debug = False
+printit = True
 def pp(subject, name = "", override = False): #prints anything with a name as string 
     if debug or printit or override:
         #print("\n", name, ": ", subject)
@@ -54,3 +63,46 @@ if debug:
     preamble = 5
 
 pp(data)
+weakness_found = False
+weakness = None
+i = preamble
+while i < len(data):
+    settocheck = [n for n in data[i-preamble:i]]
+    #pp(settocheck, "set to check")
+    currentnr = data[i]
+    #pp(data[i], "current number")
+    valids = 0
+    for index, n in enumerate(settocheck):
+        if currentnr - n in settocheck:
+            valids += 1
+            break
+    if valids == 0:
+        weakness_found = True
+        weakness = currentnr
+        break
+    i += 1
+
+pp(weakness, "first number with no two numbers adding up to it in the set before:")
+print("-------Part II---------")
+
+for index, n in enumerate(data):
+    stoplooking = False
+    settocheck = [n]
+    sumset = 0
+    i = index
+    while sumset <= weakness:
+        settocheck.append(data[i+1])
+        sumset = sum(settocheck)
+        if sumset == weakness:
+            stoplooking = True
+            break
+        i += 1
+    if stoplooking:
+        break
+settocheck = sorted(settocheck)
+encryption_weakness = settocheck[0] + settocheck[-1]
+pp(settocheck, "contiguous numbers adding up to weakness")
+pp(encryption_weakness, "some of first and last of the contiguous numbers adding up to weakness")
+
+
+
