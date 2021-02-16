@@ -123,3 +123,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+AOC15/.DS_Store
