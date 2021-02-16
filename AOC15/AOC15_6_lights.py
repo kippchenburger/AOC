@@ -26,7 +26,7 @@ print("----------------------------------------------------------")
 
 #import bookmarks as bm
 #file = bm.FileBookmark("lightsfile").path
-file = "/Users/plath/Library/Mobile Documents/com~apple~CloudDocs/Code/AOC/AOC15/lightsdata.txt"
+file = "AOC15/lightsdata.txt"
 with open(file) as f:
     data = f.read().splitlines()
 

@@ -12,7 +12,7 @@
 # like xyx, abcdefeghi (efe), or even aaa.
 
 print()
-with open("/Users/plath/Library/Mobile Documents/com~apple~CloudDocs/Code/AOC/AOC15/nicenaughty.txt") as f:
+with open("AOC15/nicenaughty.txt") as f:
     data = f.readlines()
 
 # print(data)

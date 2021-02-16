@@ -58,7 +58,7 @@ def pp(subject, name): #prints anything with a name as string
 
 
 print("\n----------------------------------")   # reading file
-file = "/Users/plath/Library/Mobile Documents/com~apple~CloudDocs/Code/AOC/AOC15/littlejimmysbits.txt"
+file = "AOC15/littlejimmysbits.txt"
 if not debug:
     with open(file) as f:
         data = f.read()
