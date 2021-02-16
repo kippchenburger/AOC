@@ -132,9 +132,4 @@ if part2:
         if solutionfound:
             break
 
-
-
-
-    
-
 pp(accumulator, "The accumulator's value is", True)
