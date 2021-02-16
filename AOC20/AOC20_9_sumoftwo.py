@@ -99,6 +99,7 @@ for index, n in enumerate(data):
         i += 1
     if stoplooking:
         break
+    
 settocheck = sorted(settocheck)
 encryption_weakness = settocheck[0] + settocheck[-1]
 pp(settocheck, "contiguous numbers adding up to weakness")
