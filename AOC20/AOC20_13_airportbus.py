@@ -123,24 +123,49 @@ for bus in bussesp2:
     if bus[0] > timestep:
         timestep = bus[0]
 
-#timestep = bussesp2[0][0]
+timestep = bussesp2[0][0]
 
 pp(timestep, "time step", True)
 firstbustime = 0
+time2 = 15
+
+for i, bus in enumerate(bussesp2):
+    busid, busindex, bustime = bus[0], bus[1], bus[2]
+    pp(bus, "--bus to check")
+    #while bustime <= time:
+        #   bustime += busid
+        #  pp(bustime, "---increasing bustime")
+    if busindex > 0:
+        #busbeforetime = bussesp2[i-1][2]
+        #while bustime < busbeforetime or bustime <= (firstbustime+busindex):
+            #   bustime += busid
+        while (time + busindex) % busid != 0:
+            time += timestep
+        timestep *= busid
+    else:
+        firstbustime = bustime
+
+pp(time, "final time", True)
+
+'''
 while not solutionfound:
+#while time2 != time:
 #while time < 200000000000000:
     #        100000000000000
-    pp(time, "-current time", False)
+    pp(time, "-current time", True)
     for i, bus in enumerate(bussesp2):
         busid, busindex, bustime = bus[0], bus[1], bus[2]
         pp(bus, "--bus to check")
-        while bustime <= time:
-            bustime += busid
-            pp(bustime, "---increasing bustime")
+        #while bustime <= time:
+         #   bustime += busid
+          #  pp(bustime, "---increasing bustime")
         if busindex > 0:
-            busbeforetime = bussesp2[i-1][2]
-            while bustime < busbeforetime or bustime <= (firstbustime+busindex):
-                bustime += busid
+            #busbeforetime = bussesp2[i-1][2]
+            #while bustime < busbeforetime or bustime <= (firstbustime+busindex):
+             #   bustime += busid
+            while (time + busindex) % busid != 0:
+                time += timestep
+            timestep *= busid
         else:
             firstbustime = bustime
         bussesp2[i] = [busid, busindex, bustime] 
@@ -164,10 +189,10 @@ while not solutionfound:
         pp(bussesp2, "busses at moment of solution", True)
         pp(firstbustime, "departure time for first bus where every subsequent bus is departing at index minutes later", True)
 
-    time += timestep
+    #time += timestep
 
 
-
+'''
 
 
 
