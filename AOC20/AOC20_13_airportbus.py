@@ -105,17 +105,17 @@ debug = False
 #data = [67,7,"x",59,61] #1261476
 #data = [1789,37,47,1889] #1202161486
 
-
+time = 100000000000000
 bussesp2 = []
 for i, entry in enumerate(data):
     if entry != "x":
-        bussesp2.append([int(entry), i, 0])
+        bussesp2.append([int(entry), i, time])
         #bussesp2[int(entry)] = i
 
 pp(bussesp2, "busses with their index", True)
 #bussessp2[x] = [id, index, time]
 solutionfound = False
-time = 0
+
 numberofbusses = len(bussesp2)
 pp(numberofbusses, "number of busses", True)
 timestep = 0
@@ -130,7 +130,7 @@ firstbustime = 0
 while not solutionfound:
 #while time < 200000000000000:
     #        100000000000000
-    pp(time, "-current time", False)
+    pp(time, "-current time", True)
     for i, bus in enumerate(bussesp2):
         busid, busindex, bustime = bus[0], bus[1], bus[2]
         pp(bus, "--bus to check")
@@ -139,7 +139,7 @@ while not solutionfound:
             pp(bustime, "---increasing bustime")
         if busindex > 0:
             busbeforetime = bussesp2[i-1][2]
-            while bustime < busbeforetime or bustime <= (firstbustime+busindex):
+            while bustime <= busbeforetime or bustime <= (firstbustime+busindex):
                 bustime += busid
         else:
             firstbustime = bustime
