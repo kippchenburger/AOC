@@ -105,7 +105,7 @@ debug = False
 #data = [67,7,"x",59,61] #1261476
 #data = [1789,37,47,1889] #1202161486
 
-time = 100000000000000
+time = 0
 bussesp2 = []
 for i, entry in enumerate(data):
     if entry != "x":
