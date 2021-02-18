@@ -53,12 +53,65 @@ for i, s in enumerate(data):
     else:
         datadir.append(data[i])
 
+#part2
+westeast = 0
+southnorth = 0
+waypoint_westeast = 10
+waypoint_southnorth = 1
+for s in data:
+    dir = s[0]
+    num = s[1]
+    print(f"waypoint position: WE {waypoint_westeast}, SN {waypoint_southnorth}")
+    print(f"ship position: WE {westeast}, SN {southnorth}")
+    wp_we_mem = waypoint_westeast
+    wp_sn_mem = waypoint_southnorth
+    if dir == "F":
+        westeast += waypoint_westeast * num
+        southnorth += waypoint_southnorth * num
+    elif dir == "E":
+        waypoint_westeast += num
+    elif dir == "W":
+        waypoint_westeast -= num
+    elif dir == "N":
+        waypoint_southnorth += num
+    elif dir == "S":
+        waypoint_southnorth -= num
+    elif dir == "L":
+        if num == 90:
+            waypoint_westeast = -wp_sn_mem
+            waypoint_southnorth = wp_we_mem
+        elif num == 180:
+            waypoint_westeast = -wp_we_mem
+            waypoint_southnorth = -wp_sn_mem
+        elif num == 270:
+            waypoint_westeast = wp_sn_mem
+            waypoint_southnorth = -wp_we_mem
+    elif dir == "R":
+        if num == 270:
+            waypoint_westeast = -wp_sn_mem
+            waypoint_southnorth = wp_we_mem
+        elif num == 180:
+            waypoint_westeast = -wp_we_mem
+            waypoint_southnorth = -wp_sn_mem
+        elif num == 90:
+            waypoint_westeast = wp_sn_mem
+            waypoint_southnorth = -wp_we_mem
+
+westeast = abs(westeast)
+southnorth = abs(southnorth)
+
+manhattandist = westeast + southnorth
+
+pp(manhattandist, "Manhattan Distance Part 2")
+
+
+'''
 pp(data, "data")
 print()
 pp(datarot, "datarot")
 print()
 pp(datadir, "datadir")
-
+'''
 ship_facing = "East"
 ship_rot_deg = 0
 
@@ -83,12 +136,12 @@ for s in datarot:
 
 for s in datarotdir:
     datadir.append(s)
-
+'''
 print()
 pp(datarotdir, "datarotdir")
 print()
 pp(datadir, "datadir")
-
+'''
 westeast = 0
 southnorth = 0
 for move in datadir:
